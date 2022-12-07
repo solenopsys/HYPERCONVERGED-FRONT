@@ -7,11 +7,13 @@ RUN git clone https://github.com/solenopsys/soft-converged-tree-repo
 WORKDIR /app/soft-converged-tree-repo
 RUN ls -alh /app/soft-converged-tree-repo
 
-FROM node AS RUN
+FROM node:latest AS RUN
 RUN mkdir /softconverged
 WORKDIR /softconverged
 COPY --from=0 /app/soft-converged-tree-repo /softconverged
 RUN ls -alh /softconverged
+RUN npm config set fetch-retry-mintimeout 20000
+RUN npm config set fetch-retry-maxtimeout 120000
 RUN npm install --legacy-peer-deps
 RUN npm install -g nx
 
