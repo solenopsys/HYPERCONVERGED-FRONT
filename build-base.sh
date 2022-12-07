@@ -1,4 +1,4 @@
-ARCHS="linux/amd64,linux/arm64"
+ARCHS="linux/amd64" #"linux/amd64,linux/arm64"
 REG_ADDRESS="registry.alexstorm.solenopsys.org"
 
 docker_base()
