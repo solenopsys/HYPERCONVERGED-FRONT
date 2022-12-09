@@ -12,7 +12,9 @@ docker_build_push()
   docker buildx build  --no-cache --build-arg MODULE_NAME=$ITEM --build-arg DOCKER_REGISTRY=registry.alexstorm.solenopsys.org  --build-arg GIT_REPOSITORY=github.com/solenopsys --platform ${ARCHS}  -t  $REG_ADDRESS/$ITEM -f ./build/dockers/fm.Dockerfile --push ./
 }
 
-gen_helm_from_template(){
+
+gen_helm_from_template()
+{
   echo "HELM GEN TEMPLATE $FILE"
   rm -rf ./dist/helm/$ITEM
   cp -r  ./build/template ./dist/helm/$ITEM
@@ -20,6 +22,7 @@ gen_helm_from_template(){
   sed -i "s/@name/$ITEM/g" *.yaml
   cd ../../../
 }
+
 
 helm_package-push()
 {
