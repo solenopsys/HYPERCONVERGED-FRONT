@@ -63,3 +63,6 @@
 [submodule "packages/uimatrix/editors/electronic"]
 	path = packages/uimatrix/editors/electronic
 	url = https://github.com/solenopsys/uimatrix-editor-electronic
+[submodule "packages/fronts/front-hub"]
+	path = packages/fronts/front-hub
+	url = https://github.com/solenopsys/sc-front-hub

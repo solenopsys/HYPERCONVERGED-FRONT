@@ -1,8 +1,12 @@
+# example git.alexstorm.solenopsys.org
+ARG GIT_REPOSITORY
+RUN echo "Git repository: ${GIT_REPOSITORY}"
+
 FROM alpine/git AS BUILD
 
 RUN mkdir /app
 WORKDIR /app
-RUN git clone https://github.com/solenopsys/soft-converged-tree-repo
+RUN git clone https://${GIT_REPOSITORY}/soft-converged-tree-repo
 #RUN git submodule update --init --recursive
 WORKDIR /app/soft-converged-tree-repo
 RUN ls -alh /app/soft-converged-tree-repo
