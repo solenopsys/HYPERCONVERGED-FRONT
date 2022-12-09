@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Values.fullName }}
+spec:
+  template:
+    spec:
+      containers:
+        - name: source
+          image: {{ .Values.container.image }}
+          command: ["/bin/cp","-r","/dist","/var/www"]
+          volumeMounts:
+            - mountPath: /var/www
+              name: front-volume
+      restartPolicy: Never
+      volumes:
+        - name: front-volume
+          persistentVolumeClaim:
+            claimName: front-pvc
+  backoffLimit: 4
+  parallelism: 1

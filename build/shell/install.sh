@@ -3,18 +3,14 @@ REG_ADDRESS="registry.alexstorm.solenopsys.org"
 
 docker_base()
 {
-  docker buildx build --platform ${ARCHS}  --no-cache -t   registry.alexstorm.solenopsys.org/hc-base -f ./build/dockers/hc-base.Dockerfile --push ./
+  docker buildx build --platform ${ARCHS}  --no-cache -t   $REG_ADDRESS/hc-base -f ./build/dockers/hc-base.Dockerfile --push ./
 }
 
 docker_build_push()
 {
   echo "DOCKER BUILD $ITEM"
-
-  docker buildx build  --no-cache --build-arg MODULE_NAME=$ITEM --platform ${ARCHS}  -t  $REG_ADDRESS/$ITEM -f ./build/dockers/fm.Dockerfile --push ./
+  docker buildx build  --no-cache --build-arg MODULE_NAME=$ITEM --build-arg DOCKER_REGISTRY=registry.alexstorm.solenopsys.org  --build-arg GIT_REPOSITORY=github.com/solenopsys --platform ${ARCHS}  -t  $REG_ADDRESS/$ITEM -f ./build/dockers/fm.Dockerfile --push ./
 }
-
-
-
 
 gen_helm_from_template(){
   echo "HELM GEN TEMPLATE $FILE"
@@ -42,43 +38,36 @@ helm_package-push()
 
 all_projects(){
   PROJECTS=""
-  PROJECTS="${PROJECTS} alexstorm-hcfm-rom"
-#  PROJECTS="${PROJECTS} alexstorm-hcfm-backups"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-clickhouse"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-community"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-content"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-dgraph"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-electronic"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-equipment"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-exhibition"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-files"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-git"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-icons"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-inventory"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-kubernetes"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-logs"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-ci"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-manufacturing"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-postgres"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-quality"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-registry"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-shockwaves"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-storages"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-time"
-  PROJECTS="${PROJECTS} alexstorm-hcfm-video"
+  PROJECTS="${PROJECTS} sc-fm-rom-alexstorm"
+  PROJECTS="${PROJECTS} sc-fm-backups-invicta"
+  PROJECTS="${PROJECTS} sc-fm-clickhouse-invicta"
+  PROJECTS="${PROJECTS} sc-fm-community-invicta"
+  PROJECTS="${PROJECTS} sc-fm-content-invicta"
+  PROJECTS="${PROJECTS} sc-fm-dgraph-invicta"
+  PROJECTS="${PROJECTS} sc-fm-electronic-alexstorm"
+  PROJECTS="${PROJECTS} sc-fm-equipment-invicta"
+  PROJECTS="${PROJECTS} sc-fm-files-invicta"
+  PROJECTS="${PROJECTS} sc-fm-gi-invicta"
+  PROJECTS="${PROJECTS} sc-fm-inventory-invicta"
+  PROJECTS="${PROJECTS} sc-fm-kubernetes-invicta"
+  PROJECTS="${PROJECTS} sc-fm-logs-invicta"
+  PROJECTS="${PROJECTS} sc-fm-ci-invicta"
+  PROJECTS="${PROJECTS} sc-fm-manufacturing-invicta"
+  PROJECTS="${PROJECTS} sc-fm-postgres-invicta"
+  PROJECTS="${PROJECTS} sc-fm-quality-invicta"
+  PROJECTS="${PROJECTS} sc-fm-registry-invicta"
+  PROJECTS="${PROJECTS} sc-fm-shockwaves-invicta"
+  PROJECTS="${PROJECTS} sc-fm-storages-invicta"
+  PROJECTS="${PROJECTS} sc-fm-time-alexstorm"
+  PROJECTS="${PROJECTS} sc-fm-video-invicta"
 
    for ITEM in $PROJECTS;do
-      docker_build_push
-#      gen_helm_from_template
-#      helm_package-push
+     docker_build_push
+     gen_helm_from_template
+     helm_package-push
    done
 
 }
-
-
-
-
-
 
 #docker_base
 all_projects

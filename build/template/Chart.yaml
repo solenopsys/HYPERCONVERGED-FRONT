@@ -1,0 +1,8 @@
+apiVersion: v2
+name: @name
+version: 0.1.9
+description: Front module @name data service
+icon: "http://alexstorm.solenopsys.org/apps/assets/@name.svg"
+
+
+

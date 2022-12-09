@@ -1,0 +1,6 @@
+fullName: "front-@name-install"
+
+container:
+    image: registry.alexstorm.solenopsys.org/@name
+    pullPolicy: Always
+
