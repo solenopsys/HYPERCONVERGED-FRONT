@@ -4,7 +4,7 @@ GIT_ADDRESS="github.com/solenopsys"
 
 connect_module()
 {
-  git submodule add -b master --force  https://$GIT_ADDRESS/sc-fm-$ITEM ./packages/modules/sc-fm-$ITEM
+  git submodule add -b master --force  https://$GIT_ADDRESS/sc-fm-$ITEM ./packages/modules/$ITEM
 }
 
 
