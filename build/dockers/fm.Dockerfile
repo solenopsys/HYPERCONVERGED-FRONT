@@ -1,3 +1,6 @@
+
+
+FROM registry.alexstorm.solenopsys.org/hc-base:latest AS BUILD_APP
 ARG MODULE_NAME
 RUN echo "Module: ${MODULE_NAME}"
 
@@ -8,9 +11,6 @@ RUN echo "Docker registry: ${DOCKER_REGISTRY}"
 # example git.alexstorm.solenopsys.org
 ARG GIT_REPOSITORY
 RUN echo "Git repository: ${GIT_REPOSITORY}"
-
-FROM ${DOCKER_REGISTRY}/hc-base:latest AS BUILD_APP
-
 WORKDIR /softconverged
 RUN git pull
 RUN rm ./workspace.json
