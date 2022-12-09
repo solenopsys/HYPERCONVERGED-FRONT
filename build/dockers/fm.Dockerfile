@@ -13,7 +13,7 @@ ARG GIT_REPOSITORY
 RUN echo "Git repository: ${GIT_REPOSITORY}"
 WORKDIR /softconverged
 RUN git pull
-RUN rm ./workspace.json
+#RUN rm ./workspace.json
 RUN echo '{  "version": 2,  "projects": {"'${MODULE_NAME}'": "packages/modules/'${MODULE_NAME}'" },"$schema": "./node_modules/nx/schemas/workspace-schema.json" }'>./workspace.json
 RUN git submodule add  -f https://${GIT_REPOSITORY}/${MODULE_NAME} packages/modules/${MODULE_NAME}
 RUN nx build ${MODULE_NAME} --configuration=production  --skip-nx-cache
