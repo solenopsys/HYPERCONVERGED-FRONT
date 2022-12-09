@@ -15,7 +15,7 @@ WORKDIR /softconverged
 RUN git pull
 #RUN rm ./workspace.json
 RUN echo '{  "version": 2,  "projects": {"'${MODULE_NAME}'": "packages/modules/'${MODULE_NAME}'" },"$schema": "./node_modules/nx/schemas/workspace-schema.json" }'>./workspace.json
-RUN git submodule update --init --recursive
+RUN git submodule update --force --recursive --init --remote
 RUN git submodule add  -f https://${GIT_REPOSITORY}/sc-fm-${MODULE_NAME} packages/modules/${MODULE_NAME}
 RUN nx run ${MODULE_NAME}:build --configuration=production  --skip-nx-cache
 
