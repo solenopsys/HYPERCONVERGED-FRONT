@@ -3,7 +3,7 @@ REG_ADDRESS="registry.alexstorm.solenopsys.org"
 
 docker_base()
 {
-  docker -v /var/run/docker.sock:/var/run/docker.sock buildx build --platform ${ARCHS}  --no-cache -t   ${REG_ADDRESS}/task-build-base -f ./build/dockers/task-build-base.Dockerfile --push ./build/dockers/
+  docker buildx build --platform ${ARCHS}  --no-cache -t   ${REG_ADDRESS}/task-build-base -f ./build/dockers/task-build-base.Dockerfile --push ./build/dockers/
 }
 
 docker_base
