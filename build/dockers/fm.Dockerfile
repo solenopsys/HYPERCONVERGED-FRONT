@@ -17,6 +17,12 @@ RUN git pull
 RUN echo '{  "version": 2,  "projects": {"'${MODULE_NAME}'": "packages/modules/'${MODULE_NAME}'" },"$schema": "./node_modules/nx/schemas/workspace-schema.json" }'>./workspace.json
 RUN git submodule update --force --recursive --init --remote
 RUN git submodule add  -f https://${GIT_REPOSITORY}/sc-fm-${MODULE_NAME} packages/modules/${MODULE_NAME}
+RUN cd packages/libs/helm && npm install
+RUN cd packages/libs/hyperstreams && npm install
+RUN cd packages/uimatrix/editors/code && npm install
+RUN cd packages/uimatrix/lists && npm install
+RUN cd packages/uimatrix/modals && npm install
+RUN cd packages/modules/${MODULE_NAME} && npm install
 RUN nx run ${MODULE_NAME}:build --configuration=production  --skip-nx-cache
 
 FROM busybox  AS BUILD_CONTAINER

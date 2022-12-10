@@ -3,12 +3,6 @@
   "version": "0.0.1",
   "license": "APACHE 2.0",
   "scripts": {
-    "install:helm": "cd packages/libs/helm && npm install",
-    "install:hyperstreams": "cd packages/libs/hyperstreams && npm install",
-    "install:code": "cd packages/uimatrix/editors/code && npm install",
-    "install:lists": "cd packages/uimatrix/lists && npm install",
-    "install:modals": "cd packages/uimatrix/modals && npm install",
-    "postinstall": "run-p install:*"
   },
   "private": true,
   "dependencies": {
