@@ -18,7 +18,7 @@ RUN git pull
 
 RUN git submodule add  -f https://${GIT_REPOSITORY}/sc-front-${MODULE_NAME} packages/fronts/front-${MODULE_NAME}
 
-RUN cd packages/fronts/${MODULE_NAME} && npm install
+RUN cd packages/fronts/front-${MODULE_NAME} && npm install
 RUN nx run ${MODULE_NAME}:build --configuration=production  --skip-nx-cache
 
 FROM busybox  AS BUILD_CONTAINER
