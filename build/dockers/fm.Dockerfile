@@ -5,23 +5,19 @@ ARG MODULE_NAME
 RUN echo "Module: ${MODULE_NAME}"
 
 # example: registry.alexstorm.solenopsys.org
-ARG DOCKER_REGISTRY
+ARG DOCKER_REGISTRY="registry.alexstorm.solenopsys.org"
 RUN echo "Docker registry: ${DOCKER_REGISTRY}"
 
 # example git.alexstorm.solenopsys.org
-ARG GIT_REPOSITORY
+ARG GIT_REPOSITORY="github.com/solenopsys"
 RUN echo "Git repository: ${GIT_REPOSITORY}"
 WORKDIR /softconverged
 RUN git pull
 #RUN rm ./workspace.json
 RUN echo '{  "version": 2,  "projects": {"'${MODULE_NAME}'": "packages/modules/'${MODULE_NAME}'" },"$schema": "./node_modules/nx/schemas/workspace-schema.json" }'>./workspace.json
-RUN git submodule update --force --recursive --init --remote
+
 RUN git submodule add  -f https://${GIT_REPOSITORY}/sc-fm-${MODULE_NAME} packages/modules/${MODULE_NAME}
-RUN cd packages/libs/helm && npm install
-RUN cd packages/libs/hyperstreams && npm install
-RUN cd packages/uimatrix/editors/code && npm install
-RUN cd packages/uimatrix/lists && npm install
-RUN cd packages/uimatrix/modals && npm install
+
 RUN cd packages/modules/${MODULE_NAME} && npm install
 RUN nx run ${MODULE_NAME}:build --configuration=production  --skip-nx-cache
 
