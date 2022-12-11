@@ -1,9 +1,9 @@
 # example git.alexstorm.solenopsys.org
-ARG GIT_REPOSITORY
-RUN echo "Git repository: ${GIT_REPOSITORY}"
+
 
 FROM alpine/git AS BUILD
-
+ARG GIT_REPOSITORY="github.com/solenopsys"
+RUN echo "Git repository: ${GIT_REPOSITORY}"
 RUN mkdir /app
 WORKDIR /app
 RUN git clone https://${GIT_REPOSITORY}/soft-converged-tree-repo
