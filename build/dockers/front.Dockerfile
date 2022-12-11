@@ -16,7 +16,7 @@ RUN git pull
 #RUN rm ./workspace.json
 #RUN echo '{  "version": 2,  "projects": {"'${MODULE_NAME}'": "packages/fronts/'${MODULE_NAME}'" },"$schema": "./node_modules/nx/schemas/workspace-schema.json" }'>./workspace.json
 
-RUN git submodule add  -f https://${GIT_REPOSITORY}/sc-front-${MODULE_NAME} packages/fronts/${MODULE_NAME}
+RUN git submodule add  -f https://${GIT_REPOSITORY}/sc-front-${MODULE_NAME} packages/fronts/front-${MODULE_NAME}
 
 RUN cd packages/fronts/${MODULE_NAME} && npm install
 RUN nx run ${MODULE_NAME}:build --configuration=production  --skip-nx-cache
