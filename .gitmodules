@@ -66,3 +66,12 @@
 [submodule "packages/fronts/front-hub"]
 	path = packages/fronts/front-hub
 	url = https://github.com/solenopsys/sc-front-hub
+[submodule "packages/modules/rom-alexstorm"]
+	path = packages/modules/rom-alexstorm
+	url = https://github.com/solenopsys/sc-fm-rom-alexstorm
+[submodule "build/eks/packages/modules/ci-invicta"]
+	path = build/eks/packages/modules/ci-invicta
+	url = https://github.com/solenopsys/sc-fm-ci-invicta
+[submodule "packages/modules/ci-invicta"]
+	path = packages/modules/ci-invicta
+	url = https://github.com/solenopsys/sc-fm-ci-invicta
