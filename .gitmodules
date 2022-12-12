@@ -75,3 +75,6 @@
 [submodule "packages/modules/ci-invicta"]
 	path = packages/modules/ci-invicta
 	url = https://github.com/solenopsys/sc-fm-ci-invicta
+[submodule "packages/fronts/front-site"]
+	path = packages/fronts/front-site
+	url = https://github.com/solenopsys/sc-front-site
