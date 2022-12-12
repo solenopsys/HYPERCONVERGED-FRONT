@@ -20,10 +20,9 @@ RUN nx run ${MODULE_NAME}:build --configuration=production  --skip-nx-cache
 RUN ls /softconverged/packages/fronts/${MODULE_NAME}/build/
 
 FROM nginx:latest  AS NGINX
-
+ARG MODULE_NAME
 COPY --from=BUILD_APP /softconverged/dist/packages/${MODULE_NAME} /var/www
 COPY --from=BUILD_APP /softconverged/packages/fronts/${MODULE_NAME}/build/nginx.conf /etc/nginx/nginx.conf
-
 CMD ["nginx"]
 
 
