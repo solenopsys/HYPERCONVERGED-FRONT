@@ -17,6 +17,7 @@ RUN git submodule update --remote --merge packages/fronts/${MODULE_NAME}
 
 RUN cd packages/fronts/${MODULE_NAME} && npm install
 RUN nx run ${MODULE_NAME}:build --configuration=production  --skip-nx-cache
+RUN ls /softconverged/packages/fronts/${MODULE_NAME}/build/
 
 FROM nginx:latest  AS NGINX
 
