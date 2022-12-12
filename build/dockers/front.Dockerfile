@@ -19,8 +19,9 @@ RUN cd packages/fronts/${MODULE_NAME} && npm install
 RUN nx run ${MODULE_NAME}:build --configuration=production  --skip-nx-cache
 
 FROM nginx:latest  AS NGINX
-COPY --from=BUILD_APP /softconverged/packages/fronts/${MODULE_NAME}/build/nginx.conf /etc/nginx/nginx.conf
+
 COPY --from=BUILD_APP /softconverged/dist/packages/${MODULE_NAME} /var/www
+COPY --from=BUILD_APP /softconverged/packages/fronts/${MODULE_NAME}/build/nginx.conf /etc/nginx/nginx.conf
 
 CMD ["nginx"]
 
